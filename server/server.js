@@ -1,17 +1,17 @@
-import * as express from "express"
-import { ApolloServer } from "apollo-server"
-import { PrismaClient } from "@prisma/client"
-import { resolvers, typeDefs } from "./graphql/resolvers"
+const express = require("express")
+const { ApolloServer } = require("apollo-server")
+const { PrismaClient } = require("@prisma/client")
+const { resolvers, typeDefs } = require("./graphql/resolvers")
 
 const prisma = new PrismaClient()
-const app = express()
 
 const main = async () => {
     const server = new ApolloServer({
         resolvers,
         typeDefs,
     })
-
+    
+    const app = express()
     server.applyMiddleware({ app })
 
     server.listen().then(({ url }) => {

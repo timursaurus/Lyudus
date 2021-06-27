@@ -1,10 +1,9 @@
-
-import * as bcrypt from 'bcrypt'
-import { sign } from 'jsonwebtoken'
+const bcrypt = require('bcrypt')
+const { sign } = require('jsonwebtoken')
 
 module.export = {
     Query: {
-        
+
     },
     Mutation: {
         Signup: async (req, { email, password }) => {
@@ -16,6 +15,19 @@ module.export = {
         },
         Signin: async (req, { email, username, password } ) => {
             const user = await User.findOne({ where: { email } })
+
+            const refreshToken = sign(
+                { userId: user.id },
+                'reftokensecret',
+                { expiresIn: '7d' }
+            )
+
+            const accessToken = sign(
+                { userId: user.id },
+                'acctokensecret',
+                { expiresIn: '15min' }
+
+            )
         }
     }
 }
