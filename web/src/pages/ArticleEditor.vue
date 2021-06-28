@@ -1,15 +1,20 @@
 <template>
-  <div></div>
+  <div>
+
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Article Editor',
   data() {
-    return {}
-  },
+    return {
+      
+    }
+  }
 }
 </script>
 
 <style>
+
 </style>
