@@ -8,11 +8,8 @@
         "start": "nodemon --exec babel-node server.js"
     },
     "keywords": [],
-    "author": "",
+    "author": "timursaurus",
     "license": "ISC",
-    "repository": {
-        "private": true
-    },
     "dependencies": {
         "@prisma/client": "^2.24.1",
         "apollo-server-express": "^2.25.2",
@@ -32,7 +29,6 @@
         "eslint": "^7.28.0",
         "eslint-config-prettier": "^8.3.0",
         "nodemon": "^2.0.7",
-        "prettier": "^2.3.1"
-        
+        "prettier": "^2.3.2"
     }
 }
