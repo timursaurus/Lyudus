@@ -2,20 +2,15 @@ import express from 'express'
 import { ApolloServer, gql } from 'apollo-server-express'
 import { PrismaClient } from '@prisma/client'
 // import resolvers from './graphql/resolvers'
-// import typeDefs from './graphql/typeDefs'
+import typeDefs from './graphql/typeDefs'
 
 const prisma = new PrismaClient()
 
 async function main() {
-  const typeDefs = gql`
-    type Query {
-      hello: String
-    }
-  `
 
   const resolvers = {
     Query: {
-      hello: () => 'Hello world!',
+      me: () => 'ain\'t working yet!',
     },
   }
 
