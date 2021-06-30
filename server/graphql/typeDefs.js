@@ -1,8 +1,7 @@
-const { gql } = require('apollo-server')
+import { gql } from "apollo-server-express"
 
 module.export = gql`
-    type User {
-
-
+    type Query {
+        hello: String
     }
 `

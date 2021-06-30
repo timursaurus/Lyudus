@@ -1,28 +1,42 @@
-const express = require("express")
-const { ApolloServer } = require("apollo-server")
-const { PrismaClient } = require("@prisma/client")
-const { resolvers, typeDefs } = require("./graphql/resolvers")
+import express from "express" 
+import { ApolloServer, gql } from "apollo-server-express"
+import { PrismaClient } from "@prisma/client"
+// import resolvers from './graphql/resolvers'
+// import typeDefs from './graphql/typeDefs'
 
 const prisma = new PrismaClient()
 
-const main = async () => {
-    const server = new ApolloServer({
-        resolvers,
-        typeDefs,
-    })
-    
-    const app = express()
-    server.applyMiddleware({ app })
+async function main() {
 
-    server.listen().then(({ url }) => {
-        console.log(`🤞 Server ready at ${url}`)
-    })
-}
 
-main()
-    .catch((err) => {
-        throw err
-    })
-    .finally(async () => {
-        await prisma.$disconnect()
-    })
+    const typeDefs = gql`
+     type Query {
+       hello: String
+     }
+     `;
+
+     const resolvers = {
+         Query: {
+       hello: () => 'Hello world!',
+     },
+   }
+
+    const server = new ApolloServer({ typeDefs, resolvers });
+    await server.start();
+  
+    const app = express();
+    server.applyMiddleware({ app });
+  
+    await new Promise(resolve => app.listen({ port: 4000 }, resolve));
+    console.log(`🤞 Server ready and steady at http://localhost:4000${server.graphqlPath}`);
+    return { server, app };
+  }
+
+main().catch(err => {
+    throw err
+}).finally(async () => {
+    await prisma.$disconnect()
+})
+
+
+

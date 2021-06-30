@@ -1,9 +1,9 @@
-const bcrypt = require('bcrypt')
-const { sign } = require('jsonwebtoken')
+import bcrypt from 'bcrypt'
+import { sign } from 'jsonwebtoken'
 
 module.export = {
     Query: {
-
+        hello: () => 'Hello world!',
     },
     Mutation: {
         Signup: async (req, { email, password }) => {
