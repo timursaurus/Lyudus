@@ -7,14 +7,19 @@ import typeDefs from './graphql/typeDefs'
 const prisma = new PrismaClient()
 
 async function main() {
-
   const resolvers = {
     Query: {
-      me: () => 'ain\'t working yet!',
+      me: () => "ain't working yet!",
     },
   }
 
-  const server = new ApolloServer({ typeDefs, resolvers })
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: {
+      prisma,
+    },
+  })
   await server.start()
 
   const app = express()

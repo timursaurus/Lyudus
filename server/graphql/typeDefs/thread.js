@@ -4,29 +4,25 @@ export default gql`
   extend type Query {
     getThread(threadID: ID!): Thread!
     getThreads: [Thread]!
-
   }
 
   extend type Mutation {
     createThread(
-        title: String!
-        content: String!
-        topic: String!
-        author: ID!
+      title: String!
+      content: String!
+      topic: String!
+      author: ID!
     ): CreateThreadResponse!
 
-    removeThread(
-        threadID: ID!
-    ): RemoveThreadResponse!
+    removeThread(threadID: ID!): RemoveThreadResponse!
 
     updateThread(
-        threadID: ID!
-        title: String!
-        content: String!
-        topic: String!
-        author: ID!
+      threadID: ID!
+      title: String!
+      content: String!
+      topic: String!
+      author: ID!
     ): UpdateThreadResponse!
-
   }
 
   type CreateThreadResponse {
@@ -39,16 +35,16 @@ export default gql`
     errors: [Error]!
   }
   type UpdateThreadResponse {
-      ok: Boolean!
-      errors: [Error]!
+    ok: Boolean!
+    errors: [Error]!
   }
 
   type Thread {
-      id: ID!
-      author: User!
-      title: String!
-      content: String!
-      topic: [Topic!]
-      created_at: String!
+    id: ID!
+    author: User!
+    title: String!
+    content: String!
+    topic: [Topic!]!
+    created_at: String!
   }
 `
