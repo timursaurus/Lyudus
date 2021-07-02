@@ -1,8 +1,6 @@
 <template>
     <div>
-        <div>
-            Home
-        </div>
+        <Nav />
         <div>
             <Editor />
         </div>
@@ -11,6 +9,7 @@
 
 <script>
 import Editor from '../components/Editor.vue'
+import Nav from '../layout/Nav.vue'
 export default {
     name: 'Home',
     data() {
@@ -19,7 +18,8 @@ export default {
         }
     },
     components: {
-        Editor
+        Editor,
+        Nav
     },
 
 }

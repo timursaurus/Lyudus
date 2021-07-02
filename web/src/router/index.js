@@ -18,7 +18,7 @@ const routes = [
         path: '/article/editor',
         name: 'article-editor',
         component: ArticleEditor,
-    },
+    }
 
 ]
 

@@ -1,7 +1,7 @@
 <template>
   <nav>
+    <a href="/">Logo</a>
     <a href="/sign-in">Войти</a>
-    <a href="#">Подписаться</a>
   </nav>
 </template>
 
