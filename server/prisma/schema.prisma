@@ -16,8 +16,8 @@ model User {
   signed_up DateTime   @default(now())
   threads   Thread[]
   profile   Profile?
-  article   Article?
-  community Community?
+  articles  Article[]
+  community Community[]
 }
 
 model Profile {

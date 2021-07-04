@@ -4,4 +4,4 @@ import error from './error'
 import topic from './topic'
 import thread from './thread'
 
-export default [root, user, error, topic, thread]
+export default [root, user, error, topic]
