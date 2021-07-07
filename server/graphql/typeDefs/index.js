@@ -1,7 +1,4 @@
-import root from './root'
-import user from './user'
-import error from './error'
-import topic from './topic'
-import thread from './thread'
+import Thread from './Thread'
+import User from './User'
 
-export default [root, user, error, topic]
+export default [User, Thread]

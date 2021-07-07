@@ -9,22 +9,75 @@ const prisma = new PrismaClient()
 async function main() {
   const resolvers = {
     Query: {
-      user: () => "ain't working yet!",
+      allThreads: (parent, args, context, info) => {
+        return prisma.thread.findMany() 
+      },
+      allUsers: (parent, args, context, info) => {
+        return prisma.user.findMany()
+      }
     },
+    Mutation: {
+      createThread: (parent, args, context, info) => {
+        return prisma.thread.create({
+          data: {
+            title: args.title,
+            content: args.content,
+            author: args.author
+          }
+        })
+      },
+      createUser: (parent, args, context, info) => {
+        return prisma.user.create({
+          data: {
+            email: args.email,
+            name: args.name,
+            username: args.username,
+          }
+        })
+      }
+    }
+    
   }
 
-  const typeDefs = `
-  type Query {
-    info: String!
-  }
+  const typeDefs = gql`
+    type Thread {
+      id: Int
+      title: String
+      content: String
+      author: String
+    },
+    type User {
+      id: Int
+      email: String
+      name: String
+      username: String
+    }
+
+
+    type Query {
+      allThreads: [Thread]
+      allUsers: [User]
+    }
+    type Mutation {
+      createThread(
+        title: String! 
+        content: String!
+        author: String!
+      ): Thread
+      createUser(
+        email: String!
+        name: String
+        username: String!
+      ): User
+    }
 `
 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: {
-      prisma,
-    },
+      prisma
+    }
   })
   await server.start()
 

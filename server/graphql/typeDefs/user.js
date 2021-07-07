@@ -1,39 +1,18 @@
 import { gql } from 'apollo-server-express'
 
-export default gql`
-  extend type Query {
-    me: User!
-  }
+const schema = gql`
+    extend type Mutation {
+        register(username: String!, email: String!, password: String!): AuthPayload!
+        login(email: String!, password: String!): AuthPayload!
+        
 
-  extend type Mutation {
-    register(
-      email: String!
-      username: String!
-      password: String!
-      name: String
-    ): RegisterResponse!
+    }
+    # extend type Query {
 
-    login(email: String!, password: String!): LoginResponse!
-  }
-
-  type RegisterResponse {
-    ok: Boolean!
-    user: User
-    errors: [Error!]
-  }
-  type LoginResponse {
-    ok: Boolean!
-    accessToken: String!
-    refreshToken: String!
-    errors: [Error!]
-  }
-
-  type User {
-    id: ID!
-    email: String!
-    name: String
-    password: String!
-    username: String!
-    signed_up: String!
-  }
+    # }
+    
+    type AuthPayload {
+        token: Token!
+        user: User!
+    }
 `

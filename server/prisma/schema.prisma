@@ -10,6 +10,7 @@ generator client {
 model User {
   id        Int        @id @default(autoincrement())
   email     String     @unique
+  password  String
   name      String?
   picture   String?
   username  String     @unique @db.VarChar(30)
@@ -25,6 +26,7 @@ model Profile {
   bio    String?
   user   User    @relation(fields: [userId], references: [id])
   userId Int
+  status String
 }
 
 model Thread {
@@ -57,6 +59,7 @@ model Topic {
 
 model Community {
   id      Int      @id @default(autoincrement())
+  alias   String
   name    String
   threads Thread[] @relation(references: [id])
   staff   User     @relation(fields: [staffId], references: [id])
