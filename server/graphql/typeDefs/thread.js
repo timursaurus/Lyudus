@@ -17,6 +17,7 @@ export default schema = gql`
         id: Int
         title: String
         content: String
+        author: String
     }
 
     type Message {

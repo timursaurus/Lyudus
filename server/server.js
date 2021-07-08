@@ -1,6 +1,7 @@
 import express from 'express'
 import { ApolloServer, gql } from 'apollo-server-express'
 import { PrismaClient } from '@prisma/client'
+import cors from 'cors'
 // import resolvers from './graphql/resolvers'
 // import typeDefs from './graphql/typeDefs'
 
@@ -75,13 +76,16 @@ async function main() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: {
-      prisma
+    context: async ({ req, res }) => {
+      return {
+        prisma
+      }
     }
   })
   await server.start()
 
   const app = express()
+  app.use(cors())
   server.applyMiddleware({ app })
 
   await new Promise((resolve) => app.listen({ port: 4000 }, resolve))

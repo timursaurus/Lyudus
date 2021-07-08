@@ -16,3 +16,4 @@ const schema = gql`
         user: User!
     }
 `
+
