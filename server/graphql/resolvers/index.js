@@ -1,13 +1,3 @@
-import { createUser, allUsers } from '../resolvers/User'
+import User from './User'
 
-const resolvers = {
-    Query: {
-        allUsers
-    },
-    Mutation: {
-        createUser
-    }
-    
-}
-
-module.export = resolvers
+export default [User]
