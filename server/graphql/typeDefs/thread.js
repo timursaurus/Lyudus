@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express'
 
-export default schema = gql`
+export default gql`
 
     extend type Query {
         allThreads: [Thread]

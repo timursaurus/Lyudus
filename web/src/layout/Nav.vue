@@ -11,5 +11,8 @@ export default {}
 
 
 
-<style>
+<style lang="scss" scoped>
+nav {
+  border-bottom: 1px dotted black;
+}
 </style>

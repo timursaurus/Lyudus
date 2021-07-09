@@ -330,12 +330,11 @@ export default {
 
 .editor-separator {
   border-right: 3px solid gray;
-  padding: 0 3p
-  x 0 3px;
+  padding: 0 5px 0 5px;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: auto;
   padding: 0px;
 }
