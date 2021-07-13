@@ -13,7 +13,7 @@ export default gql`
     id: Int
     title: String
     content: String
-    author: String
+    author: User
   }
 
   type Message {

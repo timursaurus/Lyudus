@@ -4,6 +4,9 @@ import { PrismaClient } from '@prisma/client'
 import cors from 'cors'
 import typeDefs from './graphql/typeDefs'
 import resolvers from './graphql/resolvers'
+import { getUserId } from './graphql/auth'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const prisma = new PrismaClient()
 
@@ -14,6 +17,8 @@ async function main() {
     context: async ({ req, res }) => {
       return {
         prisma,
+        ...req,
+        // userId: req && req.headers.authorization ? getUserId(req) : null
       }
     },
   })
