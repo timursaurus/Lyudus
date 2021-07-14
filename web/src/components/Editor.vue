@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container font-body mx-auto max-w-4xl prose prose-lg">
     <p class='bg-gray-100 font-bold ' >Editor</p>
     <bubble-menu :editor="editor" v-if="editor" class="bubble-menu" :tippy-options="{ duration: 100 }">
       <button title="Жирный | Bold | Ctrl + B" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
@@ -348,12 +348,5 @@ export default {
 
 <style lang='scss'>
 
-@import '../assets/styles/styles.scss';
-.editor-tools {
-  border: 3px solid black;
-  border-radius: 5px;
-  padding: 2px;
-  display: flex;
-  max-width: 1000px;
-}
+
 </style>
