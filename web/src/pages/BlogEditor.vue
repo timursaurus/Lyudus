@@ -4,6 +4,7 @@
     <main class="mx-auto max-w-4xl font-body prose prose-xl">
       <input type="text" placeholder="Заголовок" />
       <bubble-menu :editor="editor" v-if="editor" class="bubble-menu" :tippy-options="{ duration: 100 }">
+        
         <button title="Жирный | Bold | Ctrl + B" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
             <path fill="none" d="M0 0h24v24H0z" />
@@ -24,7 +25,7 @@
             />
           </svg>
         </button>
-        <button title="Ссылка" @click="setLink" v-if="!editor.isActive('link')" :class="{ 'is-active': editor.isActive('link') }">
+        <button title="Ссылка" @click="setLink; linkInputMenu = !linkInputMenu" v-if="!editor.isActive('link')" :class="{ 'is-active': editor.isActive('link') }">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
             <path fill="none" d="M0 0h24v24H0z" />
             <path
@@ -129,6 +130,8 @@ export default {
     return {
       editor: null,
       expanded: false,
+      linkInputMenu: false,
+      link: '',
     }
   },
 
@@ -146,20 +149,34 @@ export default {
   },
   methods: {
     setLink() {
-      const url = window.prompt('URL')
-      // const regex = "((http|https)://)(www.)?" +
-      //        "[a-zA-Z0-9@:%._\\+~#?&//=]" +
-      //        "{2,256}\\.[a-z]" +
-      //        "{2,6}\\b([-a-zA-Z0-9@:%" +
-      //        "._\\+~#?&//=]*)"
+      // let url = this.link
+      // this.link = ''
 
+      // vvv WIP temporary
+      const url = window.prompt('URL')
+      // ^^^ WIP
       if (this.validURL(url)) {
         this.editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
       }
     },
     validURL(url) {
       let res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+      this.link = ''
       return (res !== null)
+      
+
+      // <div class='flex link-input' v-if='linkInputMenu' >
+      //     <button @click='linkInputMenu = false;' >
+      //       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/></svg>
+      //     </button>
+      //     <input v-model='link' autofocus @keyup.enter='setLink;' type='url' @blur='linkInputMenu = false'  placeholder='Ссылка' class='px-2 '>
+      //     <button @click='setLink' >
+      //       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"/></svg>
+
+      //     </button>
+      //   </div>
+
+
     }
   },
 
@@ -234,11 +251,20 @@ export default {
   }
 }
 
+
+
+
+
 .bubble-menu {
   display: flex;
   background-color: #0d0d0d;
   padding: 0.5rem;
   border-radius: 0.5rem;
+
+  .link-input {
+    background-color: #0d0d0d !important ;
+  }
+  
 
   button {
     border: none;
