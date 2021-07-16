@@ -10,22 +10,15 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
-            p: {
-              margin: '0.2rem',
-              marginBottom: '0.5rem',
+            "code::before": {
+              content: '""',
+              "padding-left": "0.25rem"
             },
-            h1: {
-              margin: '0.5rem',
-              fontWeight: '400'
-            },
-            h2: {
-              margin: '0.5rem',
-              fontWeight: '400'
-            },
-            h3: {
-              margin: '0.5rem',
-              fontWeight: '400'
+            "code::after": {
+              content: '""',
+              "padding-right": "0.25rem"
             }
+  
           },
         }
       }
