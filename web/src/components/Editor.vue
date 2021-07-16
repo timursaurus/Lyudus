@@ -325,6 +325,11 @@ export default {
     // })
     this.editor = new Editor({
       content: `<h1>Введите заголовок</h1>`,
+      editorProps: {
+        attributes: {
+          class: 'focus:outline-none'
+        }
+      },
       editable: true,
       extensions: [
         Document,
