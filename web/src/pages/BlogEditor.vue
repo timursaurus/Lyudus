@@ -97,6 +97,7 @@ import Link from '@tiptap/extension-link'
 import Image from '@tiptap/extension-image'
 import Code from '@tiptap/extension-code'
 import Highlight from '@tiptap/extension-highlight'
+import Typography from '@tiptap/extension-typography'
 
 export default {
   components: {
@@ -120,7 +121,7 @@ export default {
         },
       },
       editable: true,
-      extensions: [Document, Text, StarterKit, BubbleMenu, Link, Image, Code, Highlight],
+      extensions: [Document, Text, StarterKit, BubbleMenu, Link, Image, Code, Highlight, Typography],
     })
   },
   methods: {
@@ -145,7 +146,7 @@ export default {
   mark {
     background-color: #ffe066;
   }
-  
+
   code {
     background-color: #0d0d0d;
     color: #fff !important;
@@ -153,7 +154,7 @@ export default {
   }
 
   pre {
-    background: #0d0d0d;
+    background: #0d0d0d !important ;
     color: #fff;
     font-family: 'JetBrainsMono', monospace;
     padding: 0.75rem 1rem;
@@ -189,7 +190,15 @@ export default {
 
   blockquote {
     padding-left: 1rem;
-    border-left: 2px solid #0d0d0d !important ;
+    border-left: 2px solid #0d0d0d !important;
+    font-style: normal !important ;
+    &:before {
+        content: open-quote;
+    }
+    &:after {
+        content: close-quote;
+    }
+    quotes: "" "" "«" "»" !important;
   }
 }
 
