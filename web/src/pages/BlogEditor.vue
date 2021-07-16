@@ -62,6 +62,25 @@
             />
           </svg>
         </button>
+        <button title="Расширить | Expand" @click="expanded = !expanded" v-show="expanded">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
+          </svg>
+        </button>
+
+        <button title="Минимизировать | Minimize" @click="expanded = !expanded" v-show="!expanded">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+          </svg>
+        </button>
+        <button title="Заголовок | Heading | Ctrl + Alt + 2" v-show="!expanded" @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path d="M17 11V4h2v17h-2v-8H7v8H5V4h2v7z" />
+          </svg>
+        </button>
       </bubble-menu>
       <floating-menu class="floating-menu" :tippy-options="{ duration: 100 }" :editor="editor" v-if="editor">
         <button title="Заголовок | Heading | Ctrl + Alt + 2" @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
@@ -109,6 +128,7 @@ export default {
   data() {
     return {
       editor: null,
+      expanded: false,
     }
   },
 
@@ -193,12 +213,12 @@ export default {
     border-left: 2px solid #0d0d0d !important;
     font-style: normal !important ;
     &:before {
-        content: open-quote;
+      content: open-quote;
     }
     &:after {
-        content: close-quote;
+      content: close-quote;
     }
-    quotes: "" "" "«" "»" !important;
+    quotes: '' '' '«' '»' !important;
   }
 }
 
