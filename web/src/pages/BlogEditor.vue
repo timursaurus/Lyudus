@@ -147,10 +147,22 @@ export default {
   methods: {
     setLink() {
       const url = window.prompt('URL')
+      // const regex = "((http|https)://)(www.)?" +
+      //        "[a-zA-Z0-9@:%._\\+~#?&//=]" +
+      //        "{2,256}\\.[a-z]" +
+      //        "{2,6}\\b([-a-zA-Z0-9@:%" +
+      //        "._\\+~#?&//=]*)"
 
-      this.editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
+      if (this.validURL(url)) {
+        this.editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
+      }
     },
+    validURL(url) {
+      let res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+      return (res !== null)
+    }
   },
+
 
   beforeUnmount() {
     this.editor.destroy()
